@@ -3,20 +3,6 @@ import json
 from urllib.parse import urlencode
 import random
 
-API_KEY = '08c9015b6ab7cbf71e68a7c2cc888e13'
-
-def get_scraperapi_url(url):
-    payload = {'api_key': API_KEY, 'url': url}
-    proxy_url = 'http://api.scraperapi.com/?' + urlencode(payload)
-    prox='http://api.scraperapi.com/?api_key='+API_KEY+'&url='+url
-    return prox
-class spyder(scrapy.Spider):
-    name = 'encontre'
-    custom_settings = {
-        'FEED_EXPORT_ENCODING': 'utf-8',
-        'DOWNLOAD_DELAY' : '4',
-    }
-
       #Este es para operaciones de compra
       #https://api.yaencontre.com/v3/search?family=FLAT&lang=es&location=madrid&operation=BUY&pageSize=10&pageNumber=1
       #Este para operaciones de alquiler
@@ -28,7 +14,7 @@ class spyder(scrapy.Spider):
       dato=["alava-provincia","albacete-provincia","alicante-alacant-provincia","almeria-provincia","corvera-de-asturias-provincia","avila-provincia","badajoz-provincia","balears-illes-provincia","barcelona-provincia","burgos-provincia","cantabria-provincia","castellon-castello-provincia","ceuta-provincia","ciudad-real-provincia","coruna-a-provincia","cuenca-provincia","caceres-provincia","cadiz-provincia","cordoba-provincia","girona-provincia","granada-provincia","guadalajara-provincia","guipuzcoa-provincia","huelva-provincia","huesca-provincia","jaen-provincia","leon-provincia","lleida-provincia","lugo-provincia","melilla-provincia","murcia-provincia","malaga-provincia","navarra-provincia","ourense-provincia","palencia-provincia","palmas-las-provincia","pontevedra-provincia","rioja-la-provincia","salamanca-provincia","santa-cruz-de-tenerife-provincia","segovia-provincia","sevilla-provincia","soria-provincia","tarragona-provincia","teruel-provincia","toledo-provincia","valencia-valencia-provincia","valladolid-provincia","vizcaya-bizkaia-provincia","zamora-provincia","zaragoza-provincia","madrid"]
       for a in dato:
         url=('https://api.yaencontre.com/v3/search?family=FLAT&lang=es&location='+a+'&operation=BUY&pageSize=46&pageNumber=1')
-        yield scrapy.Request(url=get_scraperapi_url(url),callback=self.parse_ya)
+        yield scrapy.Request(url=url,callback=self.parse_ya)
     
     def parse_ya(self,response):
         data=response.body
@@ -53,7 +39,7 @@ class spyder(scrapy.Spider):
         dato=["alava-provincia","albacete-provincia","alicante-alacant-provincia","almeria-provincia","corvera-de-asturias-provincia","avila-provincia","badajoz-provincia","balears-illes-provincia","barcelona-provincia","burgos-provincia","cantabria-provincia","castellon-castello-provincia","ceuta-provincia","ciudad-real-provincia","coruna-a-provincia","cuenca-provincia","caceres-provincia","cadiz-provincia","cordoba-provincia","girona-provincia","granada-provincia","guadalajara-provincia","guipuzcoa-provincia","huelva-provincia","huesca-provincia","jaen-provincia","leon-provincia","lleida-provincia","lugo-provincia","melilla-provincia","murcia-provincia","malaga-provincia","navarra-provincia","ourense-provincia","palencia-provincia","palmas-las-provincia","pontevedra-provincia","rioja-la-provincia","salamanca-provincia","santa-cruz-de-tenerife-provincia","segovia-provincia","sevilla-provincia","soria-provincia","tarragona-provincia","teruel-provincia","toledo-provincia","valencia-valencia-provincia","valladolid-provincia","vizcaya-bizkaia-provincia","zamora-provincia","zaragoza-provincia","madrid"]
         for i in dato:
           url=('https://api.yaencontre.com/v3/search?family=FLAT&lang=es&location='+i+'&operation=RENT&pageSize=46&pageNumber=1')
-          yield scrapy.Request(url=get_scraperapi_url(url),callback=self.parse_al)
+          yield scrapy.Request(url=url,callback=self.parse_al)
 
     def parse_al(self,response):
         data=response.body
