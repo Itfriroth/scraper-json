@@ -3,17 +3,10 @@ import json
 from urllib.parse import urlencode
 import random
 
-      #Este es para operaciones de compra
-      #https://api.yaencontre.com/v3/search?family=FLAT&lang=es&location=madrid&operation=BUY&pageSize=10&pageNumber=1
-      #Este para operaciones de alquiler
-      #https://api.yaencontre.com/v3/search?family=FLAT&lang=es&location=madrid&operation=RENT&pageSize=10&pageNumber=1
-      #Y este para construcciones nuevas
-      #https://api.yaencontre.com/v3/search?family=NEW_CONSTRUCTION&lang=es&location=madrid&operation=BUY&pageSize=10&pageNumber=1
-
     def start_requests(self):
       dato=["alava-provincia","albacete-provincia","alicante-alacant-provincia","almeria-provincia","corvera-de-asturias-provincia","avila-provincia","badajoz-provincia","balears-illes-provincia","barcelona-provincia","burgos-provincia","cantabria-provincia","castellon-castello-provincia","ceuta-provincia","ciudad-real-provincia","coruna-a-provincia","cuenca-provincia","caceres-provincia","cadiz-provincia","cordoba-provincia","girona-provincia","granada-provincia","guadalajara-provincia","guipuzcoa-provincia","huelva-provincia","huesca-provincia","jaen-provincia","leon-provincia","lleida-provincia","lugo-provincia","melilla-provincia","murcia-provincia","malaga-provincia","navarra-provincia","ourense-provincia","palencia-provincia","palmas-las-provincia","pontevedra-provincia","rioja-la-provincia","salamanca-provincia","santa-cruz-de-tenerife-provincia","segovia-provincia","sevilla-provincia","soria-provincia","tarragona-provincia","teruel-provincia","toledo-provincia","valencia-valencia-provincia","valladolid-provincia","vizcaya-bizkaia-provincia","zamora-provincia","zaragoza-provincia","madrid"]
       for a in dato:
-        url=('https://api.yaencontre.com/v3/search?family=FLAT&lang=es&location='+a+'&operation=BUY&pageSize=46&pageNumber=1')
+        url=('NameWeb')
         yield scrapy.Request(url=url,callback=self.parse_ya)
     
     def parse_ya(self,response):
@@ -38,7 +31,7 @@ import random
           yield scrapy.Request(url=url,callback=self.parse_arw)
         dato=["alava-provincia","albacete-provincia","alicante-alacant-provincia","almeria-provincia","corvera-de-asturias-provincia","avila-provincia","badajoz-provincia","balears-illes-provincia","barcelona-provincia","burgos-provincia","cantabria-provincia","castellon-castello-provincia","ceuta-provincia","ciudad-real-provincia","coruna-a-provincia","cuenca-provincia","caceres-provincia","cadiz-provincia","cordoba-provincia","girona-provincia","granada-provincia","guadalajara-provincia","guipuzcoa-provincia","huelva-provincia","huesca-provincia","jaen-provincia","leon-provincia","lleida-provincia","lugo-provincia","melilla-provincia","murcia-provincia","malaga-provincia","navarra-provincia","ourense-provincia","palencia-provincia","palmas-las-provincia","pontevedra-provincia","rioja-la-provincia","salamanca-provincia","santa-cruz-de-tenerife-provincia","segovia-provincia","sevilla-provincia","soria-provincia","tarragona-provincia","teruel-provincia","toledo-provincia","valencia-valencia-provincia","valladolid-provincia","vizcaya-bizkaia-provincia","zamora-provincia","zaragoza-provincia","madrid"]
         for i in dato:
-          url=('https://api.yaencontre.com/v3/search?family=FLAT&lang=es&location='+i+'&operation=RENT&pageSize=46&pageNumber=1')
+          url=('NameWeb')
           yield scrapy.Request(url=url,callback=self.parse_al)
 
     def parse_al(self,response):
